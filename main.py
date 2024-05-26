@@ -10,7 +10,6 @@ closing = False
 
 def fun():
     global list,closing
-    time.sleep(1)
     while not closing:
         for i in range(100):
             n = Node((randint(0, 800), randint(0, 450), 50, 50),
@@ -26,7 +25,7 @@ def fun():
 pygame.init()
 DISPLAYSURF = pygame.display.set_mode((800, 450))
 pygame.display.set_caption('hello world!')
-FPS = 30
+FPS = 60
 fpsClock = pygame.time.Clock()
 
 list = linklist(DISPLAYSURF)
