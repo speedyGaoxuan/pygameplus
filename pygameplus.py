@@ -38,19 +38,30 @@ class linklist():
         connect(node, self.end)
 
     def pop(self):
-        n1 = self.end.pre
-        connect(self.end.pre.pre, self.end)
-        del n1
+        if not self.isempty():
+            n1 = self.end.pre
+            connect(self.end.pre.pre, self.end)
+            del n1
+
+    def clear(self):
+        connect(self.head,self.end)
 
     def print(self):
-        node = self.head
-        while node.next.next != self.end:
-            node = node.next
-            print(node.data, end='->')
-        print(node.next.data)
+        if self.isempty():
+            print("empty!!!")
+        else:
+            node = self.head
+            while node.next.next != self.end:
+                node = node.next
+                print(node.rect, end='->')
+            print(node.next.rect)
 
     def show(self):
-        node = self.head
-        while node.next != self.end:
-            node = node.next
-            pygame.draw.rect(self.surface, node.color, node.rect)
+        if self.isempty():
+            # print("empty!!!")
+            pass
+        else:
+            node = self.head
+            while node.next != self.end:
+                node = node.next
+                pygame.draw.rect(self.surface, node.color, node.rect)
