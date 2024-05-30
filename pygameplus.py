@@ -9,11 +9,32 @@ class none_Node:
 
 
 class Node(none_Node):
-    def __init__(self, rect, color):
+    def __init__(self):
         # self.data = data
+        # self.rect = rect
+        # self.color = color
+        super().__init__()
+
+
+class rect(Node):
+    def __init__(self, color, rect):
         self.rect = rect
         self.color = color
         super().__init__()
+
+    def show(self, surface):
+        pygame.draw.rect(surface, self.color, self.rect)
+
+
+class circle(Node):
+    def __init__(self, color, center, radius):
+        self.color = color
+        self.center = center
+        self.radius = radius
+        super().__init__()
+
+    def show(self, surface):
+        pygame.draw.circle(surface, self.color, self.center, self.radius)
 
 
 def connect(a: none_Node, b: none_Node):
@@ -44,7 +65,7 @@ class linklist():
             del n1
 
     def clear(self):
-        connect(self.head,self.end)
+        connect(self.head, self.end)
 
     def print(self):
         if self.isempty():
@@ -64,4 +85,4 @@ class linklist():
             node = self.head
             while node.next != self.end:
                 node = node.next
-                pygame.draw.rect(self.surface, node.color, node.rect)
+                node.show(self.surface)
