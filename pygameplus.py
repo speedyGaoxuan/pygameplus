@@ -1,3 +1,6 @@
+import os
+os.environ["PYGAME_HIDE_SUPPORT_PROMPT"] = "PYGAME_HIDE_SUPPORT_PROMPT"
+
 import pygame
 import sys
 
@@ -10,10 +13,19 @@ class none_Node:
 
 class Node(none_Node):
     def __init__(self):
-        # self.data = data
-        # self.rect = rect
-        # self.color = color
         super().__init__()
+
+
+class line(Node):
+    def __init__(self, color, start, end, width=1):
+        self.color = color
+        self.start = start
+        self.end = end
+        self.width = width
+        super().__init__()
+
+    def show(self, surface):
+        pygame.draw.line(surface, self.color, self.start, self.end, self.width)
 
 
 class rect(Node):

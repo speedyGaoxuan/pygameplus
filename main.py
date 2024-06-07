@@ -1,13 +1,7 @@
-import os
-import random
-
 from pygameplus import *
 from random import *
 import time
 import threading
-
-
-# closing = False
 
 
 # def fun():
@@ -37,16 +31,37 @@ import threading
 #             list.pop()
 #             time.sleep(0.01)
 
+
+def random_choose(l):
+    r = randint(0, len(l) - 1)
+    return l[r]()
+
+
+def random_color():
+    return randint(0, 255), randint(0, 255), randint(0, 255)
+
+
+def draw_circle():
+    return circle(color=random_color(), center=(randint(25, 800), randint(25, 450)), radius=30)
+
+
+def draw_square():
+    return rect(random_color(), (randint(0, 800), randint(0, 450), 50, 50), )
+
+
+def draw_line():
+    return line(random_color(), (randint(0, 800), randint(0, 450)), (randint(0, 800), randint(0, 450)), randint(1, 20))
+
+
+fun_list = [draw_line, draw_square, draw_circle]
+
+
 def fun():
     global list
     while True:
         for i in range(200):
-            if getrandbits(1)==1:
-                n = circle(color=(randint(0, 255), randint(0, 255), randint(0, 255)),
-                           center=(randint(25, 800), randint(25, 450)), radius=30)
-            else:
-                n = rect((randint(0, 255), randint(0, 255), randint(0, 255)),
-                         (randint(0, 800), randint(0, 450), 50, 50),)
+            n = random_choose(fun_list)
+            # print(n)
             list.append(n)
             time.sleep(0.01)
             # print("im still here")
@@ -55,11 +70,22 @@ def fun():
             time.sleep(0.01)
 
 
-def test():
-    while True:
-        for i in range(100):
-            print(i)
-            time.sleep(0.05)
+# def fun():
+#     # global list
+#     while True:
+#         for i in range(200):
+#             if getrandbits(1) == 1:
+#                 n = circle(color=random_color(),
+#                            center=(randint(25, 800), randint(25, 450)), radius=30)
+#             else:
+#                 n = rect(random_color(),
+#                          (randint(0, 800), randint(0, 450), 50, 50), )
+#             list.append(n)
+#             time.sleep(0.01)
+#             # print("im still here")
+#         while not list.isempty():
+#             list.pop()
+#             time.sleep(0.01)
 
 
 pygame.init()
@@ -80,6 +106,7 @@ while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
+            print("exit with 0:window close operate")
             sys.exit()
     DISPLAYSURF.fill((255, 255, 255))
     list.show()
