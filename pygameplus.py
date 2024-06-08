@@ -1,4 +1,5 @@
 import os
+
 os.environ["PYGAME_HIDE_SUPPORT_PROMPT"] = "PYGAME_HIDE_SUPPORT_PROMPT"
 
 import pygame
@@ -12,41 +13,42 @@ class none_Node:
 
 
 class Node(none_Node):
-    def __init__(self):
+    def __init__(self, container):
+        self.container = container
         super().__init__()
 
 
 class line(Node):
-    def __init__(self, color, start, end, width=1):
+    def __init__(self, con, color, start, end, width=1):
         self.color = color
         self.start = start
         self.end = end
         self.width = width
-        super().__init__()
+        super().__init__(con)
 
-    def show(self, surface):
-        pygame.draw.line(surface, self.color, self.start, self.end, self.width)
+    def show(self):
+        pygame.draw.line(self.container.surface, self.color, self.start, self.end, self.width)
 
 
 class rect(Node):
-    def __init__(self, color, rect):
+    def __init__(self, con, color, rect):
         self.rect = rect
         self.color = color
-        super().__init__()
+        super().__init__(con)
 
-    def show(self, surface):
-        pygame.draw.rect(surface, self.color, self.rect)
+    def show(self):
+        pygame.draw.rect(self.container.surface, self.color, self.rect)
 
 
 class circle(Node):
-    def __init__(self, color, center, radius):
+    def __init__(self, con, color, center, radius):
         self.color = color
         self.center = center
         self.radius = radius
-        super().__init__()
+        super().__init__(con)
 
-    def show(self, surface):
-        pygame.draw.circle(surface, self.color, self.center, self.radius)
+    def show(self):
+        pygame.draw.circle(self.container.surface, self.color, self.center, self.radius)
 
 
 def connect(a: none_Node, b: none_Node):
@@ -54,7 +56,7 @@ def connect(a: none_Node, b: none_Node):
     b.pre = a
 
 
-class linklist():
+class linklist:
     def __init__(self, surface):
         self.head = none_Node()
         self.end = none_Node()
@@ -97,4 +99,4 @@ class linklist():
             node = self.head
             while node.next != self.end:
                 node = node.next
-                node.show(self.surface)
+                node.show()

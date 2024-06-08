@@ -4,37 +4,9 @@ import time
 import threading
 
 
-# def fun():
-#     global list
-#     while True:
-#         for i in range(100):
-#             n = rect((randint(0, 255), randint(0, 255), randint(0, 255)),
-#                      (randint(0, 800), randint(0, 450), 50, 50),)
-#             list.append(n)
-#             time.sleep(0.01)
-#             # print("im still here")
-#         while not list.isempty():
-#             list.pop()
-#             time.sleep(0.01)
-
-
-# def fun():
-#     global list
-#     while True:
-#         for i in range(200):
-#             n = circle(color=(randint(0, 255), randint(0, 255), randint(0, 255)),
-#                        center=(randint(25, 800), randint(25, 450)), radius=30)
-#             list.append(n)
-#             time.sleep(0.01)
-#             # print("im still here")
-#         while not list.isempty():
-#             list.pop()
-#             time.sleep(0.01)
-
-
-def random_choose(l):
-    r = randint(0, len(l) - 1)
-    return l[r]()
+# def random_choose(l):
+#     r = randint(0, len(l) - 1)
+#     return l[r]()
 
 
 def random_color():
@@ -42,15 +14,16 @@ def random_color():
 
 
 def draw_circle():
-    return circle(color=random_color(), center=(randint(25, 800), randint(25, 450)), radius=30)
+    return circle(list, color=random_color(), center=(randint(25, 800), randint(25, 450)), radius=30)
 
 
 def draw_square():
-    return rect(random_color(), (randint(0, 800), randint(0, 450), 50, 50), )
+    return rect(list, random_color(), (randint(0, 800), randint(0, 450), 50, 50), )
 
 
 def draw_line():
-    return line(random_color(), (randint(0, 800), randint(0, 450)), (randint(0, 800), randint(0, 450)), randint(1, 20))
+    return line(list, random_color(), (randint(0, 800), randint(0, 450)), (randint(0, 800), randint(0, 450)),
+                randint(1, 20))
 
 
 fun_list = [draw_line, draw_square, draw_circle]
@@ -60,7 +33,7 @@ def fun():
     global list
     while True:
         for i in range(200):
-            n = random_choose(fun_list)
+            n = choice(fun_list)()
             # print(n)
             list.append(n)
             time.sleep(0.01)
@@ -68,24 +41,6 @@ def fun():
         while not list.isempty():
             list.pop()
             time.sleep(0.01)
-
-
-# def fun():
-#     # global list
-#     while True:
-#         for i in range(200):
-#             if getrandbits(1) == 1:
-#                 n = circle(color=random_color(),
-#                            center=(randint(25, 800), randint(25, 450)), radius=30)
-#             else:
-#                 n = rect(random_color(),
-#                          (randint(0, 800), randint(0, 450), 50, 50), )
-#             list.append(n)
-#             time.sleep(0.01)
-#             # print("im still here")
-#         while not list.isempty():
-#             list.pop()
-#             time.sleep(0.01)
 
 
 pygame.init()
