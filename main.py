@@ -14,15 +14,15 @@ def random_color():
 
 
 def draw_circle():
-    return circle(list, color=random_color(), center=(randint(25, 800), randint(25, 450)), radius=30)
+    return circle(DISPLAYSURF, color=random_color(), center=(randint(25, 800), randint(25, 450)), radius=30)
 
 
 def draw_square():
-    return rect(list, random_color(), (randint(0, 800), randint(0, 450), 50, 50), )
+    return rect(DISPLAYSURF, random_color(), (randint(0, 800), randint(0, 450), 50, 50), )
 
 
 def draw_line():
-    return line(list, random_color(), (randint(0, 800), randint(0, 450)), (randint(0, 800), randint(0, 450)),
+    return line(DISPLAYSURF, random_color(), (randint(0, 800), randint(0, 450)), (randint(0, 800), randint(0, 450)),
                 randint(1, 20))
 
 

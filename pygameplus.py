@@ -13,42 +13,42 @@ class none_Node:
 
 
 class Node(none_Node):
-    def __init__(self, container):
-        self.container = container
+    def __init__(self, surface):
+        self.surface = surface
         super().__init__()
 
 
 class line(Node):
-    def __init__(self, con, color, start, end, width=1):
+    def __init__(self, surf, color, start, end, width=1):
         self.color = color
         self.start = start
         self.end = end
         self.width = width
-        super().__init__(con)
+        super().__init__(surf)
 
     def show(self):
-        pygame.draw.line(self.container.surface, self.color, self.start, self.end, self.width)
+        pygame.draw.line(self.surface, self.color, self.start, self.end, self.width)
 
 
 class rect(Node):
-    def __init__(self, con, color, rect):
+    def __init__(self, surf, color, rect):
         self.rect = rect
         self.color = color
-        super().__init__(con)
+        super().__init__(surf)
 
     def show(self):
-        pygame.draw.rect(self.container.surface, self.color, self.rect)
+        pygame.draw.rect(self.surface, self.color, self.rect)
 
 
 class circle(Node):
-    def __init__(self, con, color, center, radius):
+    def __init__(self, surf, color, center, radius):
         self.color = color
         self.center = center
         self.radius = radius
-        super().__init__(con)
+        super().__init__(surf)
 
     def show(self):
-        pygame.draw.circle(self.container.surface, self.color, self.center, self.radius)
+        pygame.draw.circle(self.surface, self.color, self.center, self.radius)
 
 
 def connect(a: none_Node, b: none_Node):
