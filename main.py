@@ -46,6 +46,7 @@ def fun():
 pygame.init()
 DISPLAYSURF = pygame.display.set_mode((800, 450))
 pygame.display.set_caption('hello world!')
+
 FPS = 120
 fpsClock = pygame.time.Clock()
 
@@ -61,7 +62,7 @@ while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
-            print("exit with 0:window close operate")
+            print("exit with 0")
             sys.exit()
     DISPLAYSURF.fill((255, 255, 255))
     list.show()
